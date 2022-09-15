@@ -165,11 +165,12 @@ func createIfNotExistsProgramConfig() (string, error) {
 		}
 	}
 
-	_, err = os.OpenFile(fullPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(fullPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0640)
 	if err != nil {
 		return "", fmt.Errorf("nao pode criar o arquivo de config: %w", err)
 	}
 
-	return configPath, nil
+	defer f.Close()
 
+	return configPath, nil
 }
