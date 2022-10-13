@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: action-openapi2confluence
+  annotations:
+    github.com/project-slug: madeiramadeirabr/action-openapi2confluence
+  tags:
+    - go
+spec:
+  type: openapi
+  lifecycle: production
+  owner: squad-partner-tools-admin
+  definition: "openapi: 3.0.0"
