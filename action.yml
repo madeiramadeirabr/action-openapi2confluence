@@ -1,0 +1,38 @@
+name: "action-openapi2confluence"
+description: "Action that read openapi file and export to confluence"
+
+inputs:
+  path: 
+    description: 'path to openapi file'
+    required: true
+  id: 
+    description: 'confluence page id'
+    required: true
+  spaceKey: 
+    description: 'space that page is inside'
+    required: true
+  ancestorId: 
+    description: 'parrent page'
+    required: true
+  title: 
+    description: 'title of page'
+    required: true
+  localId: 
+    description: 'localid'
+    required: true
+  macroId: 
+    description: 'macroId'
+    required: true
+
+runs:
+  using: composite
+  steps:
+  - run: |
+      go run main.go -p ${{ inputs.path }} \
+        -id ${{ inputs.id }} \
+        -s ${{ inputs.spaceKey }} \
+        -a ${{ inputs.ancestorId }} \
+        -t ${{ inputs.title }} \
+        -lid ${{ inputs.localId }} \
+        -mid ${{ inputs.macroId }} 
+    shell: bash
