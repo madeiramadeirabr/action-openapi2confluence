@@ -52,5 +52,3 @@ runs:
     - ${{ inputs.localId }}
     - ${{ inputs.macroId }}
     - ${{ inputs.env }}
-
-
