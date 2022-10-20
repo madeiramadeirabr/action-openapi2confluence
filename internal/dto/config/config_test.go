@@ -19,7 +19,8 @@ func TestShouldReturnConfig(t *testing.T) {
 	token := "aaaabbbbbccccddddeee"
 	email := "email@teste.com"
 	host := "madeiramadeira.confluence.com"
-	env := "STAGING"
+	env := ""
+	envFlag := "staging"
 
 	envAin := "STG"
 	titleAin := fmt.Sprintf("[%s] %s", envAin, title)
@@ -38,6 +39,7 @@ func TestShouldReturnConfig(t *testing.T) {
 		ancestorId,
 		localId,
 		macroId,
+		envFlag,
 	)
 
 	if err != nil {
@@ -68,7 +70,7 @@ func TestShouldReturnConfig(t *testing.T) {
 		t.Errorf("the value of '%s' is different that '%s'", cfg.Host, host)
 	}
 
-	if cfg.Environment != env {
+	if cfg.Environment != envFlag {
 		t.Errorf("the value of '%s' is different that '%s'", cfg.Environment, env)
 	}
 

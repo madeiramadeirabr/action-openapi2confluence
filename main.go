@@ -83,6 +83,7 @@ func init() {
 		spaceKey         string
 		ancestorId       string
 		title            string
+		env              string
 		err              error
 	)
 
@@ -94,6 +95,7 @@ func init() {
 	flag.StringVar(&title, "t", "", "titulo da pagina")
 	flag.StringVar(&localId, "lid", "", "locale id")
 	flag.StringVar(&macroId, "mid", "", "macro id")
+	flag.StringVar(&env, "env", "", "envorriment")
 	flag.Parse()
 
 	cfg, err = config.NewConfig(
@@ -104,6 +106,7 @@ func init() {
 		ancestorId,
 		localId,
 		macroId,
+		env,
 	)
 	if err != nil {
 		panic(err)
