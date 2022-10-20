@@ -29,7 +29,7 @@ type Config struct {
 	MacroId          string
 }
 
-func NewConfig(path, confluencePageId, title, spaceKey, ancestorId, localId, macroId string) (*Config, error) {
+func NewConfig(path, confluencePageId, title, spaceKey, ancestorId, localId, macroId, envFlag string) (*Config, error) {
 	// carrega config de env ou yaml
 	token, host, email, env, err := loadEnvOrConfigFile()
 	if err != nil {
@@ -75,6 +75,10 @@ func NewConfig(path, confluencePageId, title, spaceKey, ancestorId, localId, mac
 
 	if macroId == "" {
 		return nil, errors.New("informa o macro id")
+	}
+
+	if envFlag != "" {
+		env = envFlag
 	}
 
 	abbreviatedEnv := ""

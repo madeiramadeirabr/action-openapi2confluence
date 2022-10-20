@@ -38,6 +38,7 @@ func TestShouldReturnConfig(t *testing.T) {
 		ancestorId,
 		localId,
 		macroId,
+		"",
 	)
 
 	if err != nil {
