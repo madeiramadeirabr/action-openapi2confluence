@@ -24,7 +24,7 @@ inputs:
     description: 'macroId'
     required: true
   env: 
-    description: 'envorriment that runnings'
+    description: 'environment that runnings'
     required: true
   confluenceHost:
     description: 'set the confluence url'
