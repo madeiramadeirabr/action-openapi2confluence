@@ -23,7 +23,6 @@ type Config struct {
 	AncestorId       string
 	Token            string
 	Host             string
-	Email            string
 	Environment      string
 	LocalId          string
 	MacroId          string
@@ -31,7 +30,7 @@ type Config struct {
 
 func NewConfig(path, confluencePageId, title, spaceKey, ancestorId, localId, macroId, envFlag string) (*Config, error) {
 	// carrega config de env ou yaml
-	token, host, email, env, err := loadEnvOrConfigFile()
+	token, host, env, err := loadEnvOrConfigFile()
 	if err != nil {
 		return nil, err
 	}
@@ -59,10 +58,6 @@ func NewConfig(path, confluencePageId, title, spaceKey, ancestorId, localId, mac
 
 	if token == "" {
 		return nil, errors.New("informa o token (confluence_api_key) no arquivo de config ou env (OPENAPI2CONFUENLCE_CONFLUENCE_API_KEY)")
-	}
-
-	if email == "" {
-		return nil, errors.New("informa o email (confluence_email) no arquivo de config ou env (OPENAPI2CONFUENLCE_CONFLUENCE_EMAIL)")
 	}
 
 	if host == "" {
@@ -103,34 +98,30 @@ func NewConfig(path, confluencePageId, title, spaceKey, ancestorId, localId, mac
 		AncestorId:       ancestorId,
 		Environment:      env,
 		Token:            token,
-		Email:            email,
 		Host:             host,
 		MacroId:          macroId,
 		LocalId:          localId,
 	}, nil
 }
 
-func loadEnvOrConfigFile() (string, string, string, string, error) {
+func loadEnvOrConfigFile() (string, string, string, error) {
 	var (
 		tokenKey string = "confluence_api_key"
 		hostKey  string = "confluence_host"
-		emailKey string = "confluence_email"
 		envKey   string = "env"
 	)
 
 	configPath, err := createIfNotExistsProgramConfig()
 	if err != nil {
-		return "", "", "", "", err
+		return "", "", "", err
 	}
 
 	viper.SetDefault(tokenKey, "")
 	viper.SetDefault(hostKey, "")
-	viper.SetDefault(emailKey, "")
 	viper.SetDefault(envKey, "")
 
 	viper.SetEnvPrefix("OPENAPI2CONFLUENCE")
 	viper.BindEnv(tokenKey)
-	viper.BindEnv(emailKey)
 	viper.BindEnv(hostKey)
 	viper.BindEnv(envKey)
 
@@ -141,14 +132,14 @@ func loadEnvOrConfigFile() (string, string, string, string, error) {
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {
-		return "", "", "", "", fmt.Errorf(
+		return "", "", "", fmt.Errorf(
 			"nao pode ler as config configure os ENVs ou crie o arquivo de config %s/config.yaml: %w",
 			configPath,
 			err,
 		)
 	}
 
-	return viper.GetString(tokenKey), viper.GetString(hostKey), viper.GetString(emailKey), viper.GetString(envKey), nil
+	return viper.GetString(tokenKey), viper.GetString(hostKey), viper.GetString(envKey), nil
 }
 
 func createIfNotExistsProgramConfig() (string, error) {
