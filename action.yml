@@ -32,16 +32,12 @@ inputs:
   confluenceAuth:
     description: 'basic auth for api confluence'
     required: true
-  confluenceEmail:
-    description: 'email user of confluence'
-    required: true
 
 runs:
   using: 'docker'
   image: 'docker/Dockerfile'
   env:
     OPENAPI2CONFLUENCE_CONFLUENCE_API_KEY: ${{ inputs.confluenceAuth }}
-    OPENAPI2CONFLUENCE_CONFLUENCE_EMAIL: ${{ inputs.confluenceEmail }}
     OPENAPI2CONFLUENCE_CONFLUENCE_HOST: ${{ inputs.confluenceHost }}
   args:
     - ${{ inputs.path }}
