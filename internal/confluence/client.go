@@ -7,7 +7,6 @@ package confluence
 import (
 	"bytes"
 	"context"
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -25,14 +24,11 @@ type errorResponse struct {
 	Message string `json:"message"`
 }
 
-func NewClient(httpClient *http.Client, host, email, apiToken string) *Client {
+func NewClient(httpClient *http.Client, host, apiToken string) *Client {
 	return &Client{
-		httpClient: httpClient,
-		host:       fmt.Sprintf("%s/wiki/rest/api", host),
-		authorization: fmt.Sprintf(
-			"Basic %s",
-			base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%s:%s", email, apiToken))),
-		),
+		httpClient:    httpClient,
+		host:          fmt.Sprintf("%s/wiki/rest/api", host),
+		authorization: apiToken,
 	}
 }
 

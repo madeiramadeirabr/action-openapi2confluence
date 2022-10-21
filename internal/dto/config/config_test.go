@@ -62,10 +62,6 @@ func TestShouldReturnConfig(t *testing.T) {
 		t.Errorf("the value of '%s' is different that '%s'", cfg.Token, token)
 	}
 
-	if cfg.Email != email {
-		t.Errorf("the value of '%s' is different that '%s'", cfg.Email, email)
-	}
-
 	if cfg.Host != host {
 		t.Errorf("the value of '%s' is different that '%s'", cfg.Host, host)
 	}

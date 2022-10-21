@@ -22,7 +22,7 @@ var (
 func main() {
 	ctx := getCtx()
 
-	cli := confluence.NewClient(http.DefaultClient, cfg.Host, cfg.Email, cfg.Token)
+	cli := confluence.NewClient(http.DefaultClient, cfg.Host, cfg.Token)
 
 	spec, err := reader.LoadOpenApiSpec(cfg.Path)
 	if err != nil {
