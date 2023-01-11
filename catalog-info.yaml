@@ -6,8 +6,11 @@ metadata:
     github.com/project-slug: madeiramadeirabr/action-openapi2confluence
   tags:
     - go
+    - python
+    - Makefile
+    - shell
+    - dockerfile
 spec:
-  type: openapi
+  type: library
   lifecycle: production
   owner: squad-partner-tools-admin
-  definition: "openapi: 3.0.0"
