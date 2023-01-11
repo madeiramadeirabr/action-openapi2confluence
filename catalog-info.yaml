@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: action-openapi2confluence
+  annotations:
+    github.com/project-slug: madeiramadeirabr/action-openapi2confluence
+  tags:
+    - go
+    - python
+    - Makefile
+    - shell
+    - dockerfile
+spec:
+  type: library
+  lifecycle: production
+  owner: squad-partner-tools-admin
