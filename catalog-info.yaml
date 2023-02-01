@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: action-openapi2confluence
+  description: Github action que faz a atualização das nossas documentações no confluence baseada no openapi.
+  annotations:
+    github.com/project-slug: madeiramadeirabr/action-openapi2confluence
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - go
+    - python
+    - makefile
+    - shell
+    - dockerfile
+spec:
+  type: library
+  lifecycle: production
+  owner: squad-partner-tools
